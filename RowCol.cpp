@@ -1,6 +1,5 @@
 #include "RowCol.h"
 
-RowCol::RowCol(int i)
+RowCol::RowCol(int i) : Section(i)
 {
-	id = i;
 }

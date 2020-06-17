@@ -1,42 +1,44 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include "Number.h"
+#include "RowCol.h"
+#include "Box.h"
+
+#include <array>
 
 using namespace std;
+
+typedef array<bool, 9> Possibilities;
+
+class Number;
 
 class Cell
 {
 private:
-	Number* num;
-	int row, col;
-	//vector<bool> possibleValues = { false,false,false,false,false,
-	//								false,false,false,false };
-	vector<Number*> possibilities;
-	int boxNumber;
-	bool confirm = false;
-
+	int num;
+	RowCol* row;
+	RowCol* col;
+	Box* box;
+	
+	Possibilities pos;
+	int numPossibilities;
+	bool confirm;
 
 public:
-	Cell(int r, int c, int box);
+	static vector<Number *> numbers;
 
-	void setNumber(Number* n);
-	Number* getNumber();
+	Cell(RowCol* r, RowCol* c, Box* b);
 
-	void setRow(int r);
-	int getRow();
+	int getNumber();
+	RowCol* getRow();
+	RowCol* getCol();
+	Box* getBox();
+	Possibilities getPossibilities();
+	int getNumPossibilities();
 
-	void setCol(int c);
-	int getCol();
+	void removePossibility(int n);
 
-	void setPossibilities(vector<Number*> n);
-	void removePossibility(Number* n);
-	vector<Number*> getPossibilities();
-
-	void setBoxNumber(int box);
-	int getBoxNumber();
-
-	void setConfirm(bool b);
+	void confirmNumber(int n);
 	bool isConfirmed();
 };
 

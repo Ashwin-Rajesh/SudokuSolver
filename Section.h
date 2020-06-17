@@ -1,21 +1,30 @@
 #ifndef SECTION_H
 #define SECTION_H
 
-#include "Cell.h"
+#include <array>
+#include <vector>
+
+using namespace std;
+
+class Cell;
+class Number;
+typedef array<bool, 9> Confirmed;
 
 class Section
 {
 private:
+	int id;
 	vector<Cell*> listOfCells;
-	vector<Number*> confirmedNumber;
 public:
-	Section();
+	Section(int i);
 	
+	int getId();
+
 	void addCell(Cell* c);
 	vector<Cell*> getCells();
 
-	void addNumber(Number* n);
-	vector<Number*> getNumbers();
+	void confirmNumber(int n);
+	Confirmed getConfirmed();
 };
 
 #endif // !SECTION_H

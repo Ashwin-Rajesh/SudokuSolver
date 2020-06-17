@@ -1,9 +1,8 @@
 #include "Section.h"
+#include "Cell.h"
 
-Section::Section()
-{
-
-}
+Section::Section(int i) : id(i)
+{}
 
 void Section::addCell(Cell* c)
 {
@@ -15,12 +14,13 @@ vector<Cell*> Section::getCells()
 	return listOfCells;
 }
 
-void Section::addNumber(Number* n)
+int Section::getId()
 {
-	confirmedNumber.push_back(n);
+	return id;
 }
 
-vector<Number*> Section::getNumbers()
+void Section::confirmNumber(int n)
 {
-	return confirmedNumber;
+	for(auto c:listOfCells)
+		c->removePossibility(n);
 }

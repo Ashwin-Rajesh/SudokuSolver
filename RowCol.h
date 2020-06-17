@@ -5,13 +5,8 @@
 
 class RowCol : public Section
 {
-private:
-	int id;
-
 public:
 	RowCol(int i);
-
-
 };
 
 #endif // !ROWCOL_H

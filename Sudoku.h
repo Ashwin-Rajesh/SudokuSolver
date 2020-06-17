@@ -3,7 +3,8 @@
 
 #include "RowCol.h"
 #include "Box.h"
-
+#include "Cell.h"
+#include "Number.h"
 
 class Sudoku
 {
@@ -12,6 +13,7 @@ private:
 	vector<RowCol*> horizontal;
 	vector<RowCol*> vertical;
 	vector<Box*> box;
+	Cell* cells[9][9];
 
 public:
 	Sudoku();

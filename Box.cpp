@@ -1,16 +1,5 @@
 #include "Box.h"
 
-Box::Box(int i)
+Box::Box(int i) : Section(i)
 {
-	id = i;
 }
-
-//void Box::addCell(Cell* c)
-//{
-//	listOfCells.push_back(c);
-//}
-//
-//vector<Cell*> Box::getList()
-//{
-//	return listOfCells;
-//}

@@ -1,75 +1,52 @@
 #include "Cell.h"
 
-Cell::Cell(int r, int c, int box)
-{
-	setRow(r);
-	setCol(c);
-	setBoxNumber(box);
-}
+Cell::Cell(RowCol* r, RowCol *c, Box* b):num(0),row(r),col(c),box(b), pos({1,1,1,1,1,1,1,1,1}), numPossibilities(9), confirm(false)
+{}
 
-void Cell::setNumber(Number* n)
-{
-	num = n;
-}
+int Cell::getNumber()				{return num;}
 
-Number* Cell::getNumber()
-{
-	return num;
-}
+RowCol* Cell::getRow()					{return row;}
 
-void Cell::setRow(int r)
-{
-	row = r;
-}
+RowCol* Cell::getCol()					{return col;}
 
-int Cell::getRow()
-{
-	return row;
-}
+Possibilities Cell::getPossibilities()	{return pos;}
 
-void Cell::setCol(int c)
-{
-	col = c;
-}
+int Cell::getNumPossibilities()			{return numPossibilities;}
 
-int Cell::getCol()
-{
-	return col;
-}
+Box* Cell::getBox()						{return box;}
 
-void Cell::setPossibilities(vector<Number*> n)
+void Cell::removePossibility(int n)
 {
-	n.pop_back();
-	possibilities = n;
-}
+	if(confirm)
+		return;
 
-void Cell::removePossibility(Number* n)
-{
-	vector<Number*>::iterator itr = find(possibilities.begin(), possibilities.end(), n);
-	if (itr != possibilities.end())
+	if(n > 0 && n < 10)
+		if(pos.at(n - 1))
+		{
+			pos.at(n - 1) = false;
+			numPossibilities--;
+		}
+	else
+		return;
+
+	if(numPossibilities == 1)
 	{
-		possibilities.erase(itr);
+		for(int i = 0; i < 9; i++)
+			if(pos.at(i))
+				confirmNumber(i + 1);
 	}
 }
 
-vector<Number*> Cell::getPossibilities()
+void Cell::confirmNumber(int n)
 {
-	return possibilities;
-}
+	pos = {0,0,0,0,0,0,0,0,0};
+	numPossibilities = 1;
+	confirm = true;
+	num = n;
 
-void Cell::setBoxNumber(int box)
-{
-	boxNumber = box;
-}
-
-int Cell::getBoxNumber()
-{
-	return boxNumber;
-}
-
-void Cell::setConfirm(bool b)
-{
-	confirm = b;
+	row->confirmNumber(n);
+	col->confirmNumber(n);
+	box->confirmNumber(n);
 }
 
 bool Cell::isConfirmed()
