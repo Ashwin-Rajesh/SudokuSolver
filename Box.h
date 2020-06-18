@@ -7,6 +7,8 @@ class Box : public Section
 {
 public:
 	Box(int i);
+
+	void findIndirect();
 };
 
 #endif // !BOX_H

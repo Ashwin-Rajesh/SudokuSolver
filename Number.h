@@ -24,6 +24,8 @@ public:
 	Number(int i, Cell* table[9][9]);
 
 	void removeCell(Cell* c);
+	void confirmCell(Cell* c);
+	void processIndirect();
 
 	int getValue() const;
 };

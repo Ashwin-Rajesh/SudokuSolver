@@ -1,9 +1,12 @@
 #include "Cell.h"
+#include "Number.h"
 
-Cell::Cell(RowCol* r, RowCol *c, Box* b):num(0),row(r),col(c),box(b), pos({1,1,1,1,1,1,1,1,1}), numPossibilities(9), confirm(false)
+Cell::Cell(int i, RowCol* r, RowCol *c, Box* b):id(i),num(0),row(r),col(c),box(b), pos({1,1,1,1,1,1,1,1,1}), numPossibilities(9), confirm(false)
 {}
 
-int Cell::getNumber()				{return num;}
+int Cell::getId()						{return id;}
+
+int Cell::getNumber()					{return num;}
 
 RowCol* Cell::getRow()					{return row;}
 
@@ -25,6 +28,7 @@ void Cell::removePossibility(int n)
 		{
 			pos.at(n - 1) = false;
 			numPossibilities--;
+			numbers.at(n - 1)->removeCell(this);
 		}
 	else
 		return;
@@ -43,6 +47,10 @@ void Cell::confirmNumber(int n)
 	numPossibilities = 1;
 	confirm = true;
 	num = n;
+	numbers.at(n-1)->confirmCell(this);
+
+	for(auto number:numbers)
+		number->removeCell(this);
 
 	row->confirmNumber(n);
 	col->confirmNumber(n);

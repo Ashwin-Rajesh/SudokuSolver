@@ -22,7 +22,7 @@ Sudoku::Sudoku()
 				RowCol* col = vertical.at(j);
 				Box* b = box.at(int(i/3)*3 + int(j/3));
 				
-				cells[i][j] = new Cell(row, col, b);
+				cells[i][j] = new Cell((9*i)+j, row, col, b);
 
 				row->addCell(cells[i][j]);
 				col->addCell(cells[i][j]);
@@ -37,7 +37,8 @@ Sudoku::Sudoku()
 
 	// Read from file
 	string line;
-	ifstream file("./Sudoku.txt");
+	// ifstream file("C:\\Users\\surya\\source\\repos\\SudokuAlgorithm\\SudokuAlgorithm\\Examples\\Sudoku.txt");
+	ifstream file("./Examples/Sudoku2.txt");
 	if (file.is_open())
 	{
 		int i = 0;
@@ -53,10 +54,39 @@ Sudoku::Sudoku()
 			i++;
 		}
 	}
-
+	else
+	{
+		cout << "File not found";
+		return;
+	}
+	
+	
 	file.close();
 	
-	cout << "Puzzle now" << endl;
+	print();
+
+
+	int count = getConfirmed();
+	if(count != 81)
+	{
+		cout << "Processing indirect" << endl;
+		while(true)
+		{
+			cout << "t" << count << endl;
+			for(auto number:numberList)
+				number->processIndirect();
+			if(count == getConfirmed())
+				break;
+			count = getConfirmed();
+		}
+		print();
+	}
+	
+	cout << "finished";
+}
+
+void Sudoku::print()
+{
 	for (int i = 0; i < 9; i++)
 	{
 		for (int j = 0; j < 9; j++)
@@ -68,19 +98,15 @@ Sudoku::Sudoku()
 				cout << " _ ";
 		}
 		cout<<endl;
-		for (int j = 0; j < 9; j++)
-		{
-			Cell* c = cells[i][j];
-			cout << "(" << c->getNumPossibilities() << ")";
-		}
-		cout << endl << endl;
 	}
+}
 
-	auto b = cells[2][4]->getPossibilities();
-
-	for (int i = 0; i < 9; i++)
-	{
-		if(b.at(i))
-			cout << i+1 << " ";
-	}
+int Sudoku::getConfirmed()
+{
+	int count = 0;
+	for(int i = 0;i < 9; i++)
+		for(int j = 0; j < 9; j++)
+			if(cells[i][j]->isConfirmed())
+				count++;
+	return count;
 }

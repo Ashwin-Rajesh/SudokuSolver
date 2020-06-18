@@ -15,6 +15,7 @@ class Number;
 class Cell
 {
 private:
+	int id;
 	int num;
 	RowCol* row;
 	RowCol* col;
@@ -27,8 +28,9 @@ private:
 public:
 	static vector<Number *> numbers;
 
-	Cell(RowCol* r, RowCol* c, Box* b);
+	Cell(int i, RowCol* r, RowCol* c, Box* b);
 
+	int getId();
 	int getNumber();
 	RowCol* getRow();
 	RowCol* getCol();

@@ -9,6 +9,8 @@ int NumberSection::getNumCells()            {return num_cells;}
 
 vector<Cell*> NumberSection::getCells()     {return cells;}
 
+int NumberSection::getId()                  {return id;}
+
 void NumberSection::addCell(Cell* c)
 {
     cells.push_back(c);
@@ -25,10 +27,19 @@ void NumberSection::removeCell(Cell* c)
             cells.erase(cells.begin() + i);
             num_cells--;
             if(num_cells == 1)
-                removeCell(cells.at(0));
+            {
+                cells.at(0)->confirmNumber(number->getValue());
+            }
             else if(num_cells == 0)
-                finished = true;
+                finish();
             return;
         }
     }
+}
+
+void NumberSection::finish()
+{
+    cells.clear();
+    num_cells=0;
+    finished = true;
 }

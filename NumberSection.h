@@ -21,10 +21,12 @@ public:
 
     void addCell(Cell* c);
     
+    int getId();
     int getNumCells();
     vector<Cell*> getCells();
 
     void removeCell(Cell* c);
+    void finish();
 };
 
 #endif

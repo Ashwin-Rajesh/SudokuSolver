@@ -17,7 +17,8 @@ private:
 
 public:
 	Sudoku();
-
+	void print();
+	int getConfirmed();
 };
 
 #endif // !SUDOKU_H
