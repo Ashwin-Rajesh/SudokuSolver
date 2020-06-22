@@ -3,7 +3,7 @@
 ### Installation
 - Download the repository either by downloading as zip or by the command
 
-```git clone https://Ashwin-Rajesh/Sudoku_Solver```
+```git clones https://github.com/Ashwin-Rajesh/Sudoku_Solver.git```
 - Now change move to the folder using
 
 ```cd Sudoku_Solver```
