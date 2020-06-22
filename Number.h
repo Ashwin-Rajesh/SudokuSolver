@@ -1,8 +1,6 @@
 #ifndef NUMBER_H
 #define NUMBER_H
 
-#include "RowCol.h"
-
 #include <iostream>
 #include <fstream>
 #include <vector>

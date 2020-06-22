@@ -1,8 +1,7 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include "RowCol.h"
-#include "Box.h"
+#include "Section.h"
 
 #include <array>
 
@@ -12,14 +11,18 @@ typedef array<bool, 9> Possibilities;
 
 class Number;
 
+struct GuessWrongSignal{
+	int level;
+};
+
 class Cell
 {
 private:
 	int id;
 	int num;
-	RowCol* row;
-	RowCol* col;
-	Box* box;
+	Section* row;
+	Section* col;
+	Section* box;
 	
 	Possibilities pos;
 	int numPossibilities;
@@ -28,13 +31,13 @@ private:
 public:
 	static vector<Number *> numbers;
 
-	Cell(int i, RowCol* r, RowCol* c, Box* b);
+	Cell(int i, Section* r, Section* c, Section* b);
 
 	int getId();
 	int getNumber();
-	RowCol* getRow();
-	RowCol* getCol();
-	Box* getBox();
+	Section* getRow();
+	Section* getCol();
+	Section* getBox();
 	Possibilities getPossibilities();
 	int getNumPossibilities();
 

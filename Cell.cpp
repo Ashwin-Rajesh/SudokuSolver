@@ -1,22 +1,22 @@
 #include "Cell.h"
 #include "Number.h"
 
-Cell::Cell(int i, RowCol* r, RowCol *c, Box* b):id(i),num(0),row(r),col(c),box(b), pos({1,1,1,1,1,1,1,1,1}), numPossibilities(9), confirm(false)
+Cell::Cell(int i, Section* r, Section *c, Section* b):id(i),num(0),row(r),col(c),box(b), pos({1,1,1,1,1,1,1,1,1}), numPossibilities(9), confirm(false)
 {}
 
 int Cell::getId()						{return id;}
 
 int Cell::getNumber()					{return num;}
 
-RowCol* Cell::getRow()					{return row;}
+Section* Cell::getRow()					{return row;}
 
-RowCol* Cell::getCol()					{return col;}
+Section* Cell::getCol()					{return col;}
 
 Possibilities Cell::getPossibilities()	{return pos;}
 
 int Cell::getNumPossibilities()			{return numPossibilities;}
 
-Box* Cell::getBox()						{return box;}
+Section* Cell::getBox()						{return box;}
 
 void Cell::removePossibility(int n)
 {
@@ -39,6 +39,9 @@ void Cell::removePossibility(int n)
 			if(pos.at(i))
 				confirmNumber(i + 1);
 	}
+
+	if(numPossibilities < 1)
+		throw GuessWrongSignal();
 }
 
 void Cell::confirmNumber(int n)
