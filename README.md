@@ -8,4 +8,4 @@
 - Now, run the makefile
 ''' make'''
 - Now, run the sudoku executable by passing some example
-''' ./sudoku'''
+"""./sudoku"""
