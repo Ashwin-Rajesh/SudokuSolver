@@ -3,8 +3,8 @@
 ### Installation
 - Download the repository either by downloading as zip or by the command
 
-```git clones https://github.com/Ashwin-Rajesh/Sudoku_Solver.git```
-- Now change move to the folder using
+```git clone https://github.com/Ashwin-Rajesh/Sudoku_Solver.git```
+- Now move to the folder using
 
 ```cd Sudoku_Solver```
 - Now, run the makefile
