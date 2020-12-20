@@ -27,3 +27,7 @@
 - A number is confirmed in a cell when either of these happens
   - Only one number is possible to be placed in the position
   - A number can be placed only in one position in a row/column/3x3
+  
+- If a number cannot be confirmed, we make a random guess where there are minimum number of possible numbers, and then backtrack if we detect an impossible situation, which is characterized by
+  - No number can be placed in a cell
+  - A number cannot go anywhere in a row/column/3x3 section
